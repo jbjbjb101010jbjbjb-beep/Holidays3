@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Holidays • Dallas Rugs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at center, #1c1c1c 0%, #0a0a0a 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(212,175,55,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+      padding: 40px;
+    }
+
+    .line1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5rem;
+      font-weight: 700;
+      letter-spacing: 8px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #d4af37, #fffbe6, #f1c40f, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px rgba(212,175,55,0.4);
+      animation: glow 4s ease-in-out infinite alternate;
+    }
+
+    .line2 {
+      font-size: 2.4rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      opacity: 0.9;
+      margin: 30px 0;
+      color: #e8e8e8;
+    }
+
+    .line3 {
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      color: #d4af37;
+      text-shadow: 0 0 20px rgba(212,175,55,0.5);
+    }
+
+    .signature {
+      margin-top: 80px;
+      font-family: 'Playfair Display', cursive;
+      font-size: 3.2rem;
+      background: linear-gradient(to right, #d4af37, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 30px rgba(212,175,55,0.3); }
+      to { text-shadow: 0 0 60px rgba(212,175,55,0.6); }
+    }
+
+    .snowfall {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .snowflake {
+      position: absolute;
+      color: #fff;
+      font-size: 1.2em;
+      opacity: 0.7;
+      animation: snow linear infinite;
+    }
+
+    @keyframes snow {
+      0% { transform: translateY(-100vh) translateX(0) rotate(0deg); }
+      100% { transform: translateY(100vh) translateX(50px) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+  <div class="snowfall" id="snow"></div>
+
+  <div class="container">
+    <div class="line1">Happy Holidays</div>
+    <div class="line2">To you and your loved ones</div>
+    <div class="line3">from the Dallas Rugs family</div>
+    <div class="signature">Dallas Rugs</div>
+  </div>
+
+  <script>
+    const snow = document.getElementById("snow");
+    const flakes = "❅ ❆ ✻ ✼ ❄";
+
+    function createFlake() {
+      const f = document.createElement("div");
+      f.classList.add("snowflake");
+      f.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+      f.style.left = Math.random() * 100 + "vw";
+      f.style.animationDuration = Math.random() * 15 + 10 + "s";
+      f.style.fontSize = Math.random() * 20 + 12 + "px";
+      f.style.opacity = Math.random() * 0.6 + 0.3;
+      snow.appendChild(f);
+      setTimeout(() => f.remove(), 25000);
+    }
+
+    setInterval(createFlake, 250);
+  </script>
+</body>
+</html>
